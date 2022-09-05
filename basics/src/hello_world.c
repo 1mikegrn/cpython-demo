@@ -1,3 +1,6 @@
+#include <stddef.h>
+#include <stdio.h>
+
 #include <Python.h>
 
 void hello_world() {
@@ -10,7 +13,7 @@ static char HelloWorldFunctionDocs[] =
 
 static PyModuleDef MethodTable[] = {
     {"hello_world", (PyCFunction) hello_world, METH_NOARGS, HelloWorldFunctionDocs},
-    {NULL,NULL,0,NULL}
+    {NULL, NULL, NULL, NULL}
 };
 
 static char HelloWorldModuleDocs[] =

@@ -1,8 +1,6 @@
 import os.path
 from setuptools import find_packages, setup, Extension
 
-HERE = os.path.abspath(os.path.dirname(__file__))
-
 extensions = [
     Extension(
         'hello_world',
