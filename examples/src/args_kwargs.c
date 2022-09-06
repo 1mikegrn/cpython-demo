@@ -14,7 +14,7 @@ PyObject* args_sum(PyObject* self, PyObject* args) {
         }
         else if (PyFloat_Check(item)) {
             double val_f = PyFloat_AsDouble(item);
-            res_f = val_f;
+            res_f += val_f;
         }
         Py_DECREF(item);
     }
