@@ -11,7 +11,7 @@ void hello_world() {
 static char HelloWorldFunctionDocs[] =
     "prints 'Hello World!' to the screen, from C.";
 
-static PyModuleDef MethodTable[] = {
+static PyMethodDef MethodTable[] = {
     {"hello_world", (PyCFunction) hello_world, METH_NOARGS, HelloWorldFunctionDocs},
     {NULL, NULL, NULL, NULL}
 };
