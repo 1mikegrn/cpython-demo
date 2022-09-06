@@ -18,6 +18,7 @@ PyObject* args_sum(PyObject* self, PyObject* args) {
         }
         Py_DECREF(item);
     }
+    Py_DECREF(iter);
 
     if (!res_f) {
         return PyLong_FromLong(res_i);

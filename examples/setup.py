@@ -10,7 +10,7 @@ extensions = [
     ),
     Extension(
         name='numpy_utils',
-        sources=[os.path.join('src', 'numpyutils.c')],
+        sources=[os.path.join('src', 'numpy_utils.c')],
         include_dirs=[np.get_include()]
     ),
 ]

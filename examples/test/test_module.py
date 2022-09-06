@@ -1,7 +1,7 @@
 import numpy as np
 
 from args_kwargs import args_sum
-from numpy_utils import np_iter
+from numpy_utils import np_iter, np_create
 
 class TestModule:
     def test_args_kwargs(self):
@@ -10,4 +10,8 @@ class TestModule:
 
     def test_numpy_utils(self):
         arr = np.array([1.1,2.2,3.3])
-        np_iter(arr)
+        assert np_iter(arr) == 6.6
+
+    def test_create(self):
+        arr = np_create(1,2,3)
+        assert type(arr) == np.ndarray
