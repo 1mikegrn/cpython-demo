@@ -13,5 +13,6 @@ class TestModule:
         assert np_iter(arr) == 6.6
 
     def test_create(self):
-        arr = np_create(1,2,3)
+        arr = np_create(1,2,3,4)
         assert type(arr) == np.ndarray
+        assert arr.shape == (2,2)

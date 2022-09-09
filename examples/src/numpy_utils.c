@@ -3,6 +3,8 @@
 #include <Python.h>
 #include <numpy/arrayobject.h>
 
+void PyDebug() {return;}
+
 PyObject* np_iter(PyObject* self, PyArrayObject* array) {
     if (array->nd > 1) {
         PyErr_SetString(PyExc_ValueError, "array must be 1-dimensional");
@@ -25,23 +27,26 @@ PyObject* np_iter(PyObject* self, PyArrayObject* array) {
 PyObject* np_create(PyObject* self, PyObject* args) {
 
     Py_ssize_t length = PyTuple_Size(args);
-    npy_intp dimensions[1] = {length};
+    npy_intp dimensions[2] = {2, 2};
 
-    PyArrayObject* array = (PyArrayObject*) PyArray_SimpleNew(1, dimensions, NPY_LONG);
+    PyArrayObject* array = (PyArrayObject*) PyArray_SimpleNew(2, dimensions, NPY_LONG);
 
     PyObject* iter = PyObject_GetIter(args);
     PyObject* item;
+
     double _item;
 
-    long i = 0;
-    long *arr = (long*) array->data;
-    while (item = PyIter_Next(iter)) {
-        _item = PyLong_AsLong(item);
-        arr[i] = _item;
-        Py_DECREF(item);
-        i += 1;
+    for (long i = 0; i<2; i++ ) {
+        for (long j = 0; j<2; j++) {
+            item = PyIter_Next(iter);
+            long* addr = (long*) (array->data + i*array->strides[0] + j*array->strides[1]);
+            *addr = PyLong_AsLong(item);
+            Py_DECREF(item);
+        }
     }
+
     Py_DECREF(iter);
+
     return PyArray_Return(array);
 }
 
